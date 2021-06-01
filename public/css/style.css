@@ -35,6 +35,7 @@ body {
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    transition: margin 0.5s ease-out;
 }
 
 .choose-insect-btn img{
@@ -110,7 +111,7 @@ body {
   } */
 
 .screen.up {
-    margin-top: 0vh;
+    margin-top: -100vh;
 }
 
 a {

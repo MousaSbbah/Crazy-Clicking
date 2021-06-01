@@ -9,7 +9,7 @@ const message = document.getElementById( 'message' );
 
 let seconds = 0;
 let score = 0;
-let selected_insect = 0;
+let selected_insect = {};
 
 start_btn.addEventListener( 'click', () => {
   screens[0].classList.add( 'up' );
@@ -18,8 +18,8 @@ start_btn.addEventListener( 'click', () => {
 choose_insect_btns.forEach( ( btn ) => {
   btn.addEventListener( 'click', () => {
     const img = btn.querySelector( 'img' );
-    const src = btn.querySelector( 'src' );
-    const alt = btn.querySelector( 'alt' );
+    const src = img.getAttribute( 'src' );
+    const alt = img.getAttribute( 'alt' );
     selected_insect = {
       src,
       alt,
@@ -36,7 +36,7 @@ function createInsect() {
   const { x, y } = getRandomLocation();
   insect.style.top=`${y}px`;
   insect.style.left=`${x}px`;
-  insect.innerHTML=`<img style="transform:rotate(${Math.random()*360} deg)" src="${selected_insect.src}" alt="${selected_insect.alt}" />`;
+  insect.innerHTML=`<img style="transform: rotate(${Math.random() * 360}deg)" src="${selected_insect.src}" alt="${selected_insect.alt}" />`;
   insect.addEventListener( 'click',catchInsect );
   game_container.appendChild( insect );
 
