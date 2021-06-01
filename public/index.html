@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>Document</title>
+    <title>Crazy Clicking</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <div class="screen">
+        <h1>Catch the Shape</h1>
+        <button class="btn" id="start-btn">Start</button>
+    </div>
+<div class="screen">
+    <h1>What is you're favorite shape ?</h1>
+    <ul class="insects-list">
+        <li>
+            <button class="choose-insect-btn">
+            <p>fly</p>
+            <img src="https://starpng.com/public/uploads/preview/png-square-shape-square-shape-clipart-101576784695lexm5qrek4.png" alt="fly">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>triangle</p>
+            <img src="https://w7.pngwing.com/pngs/892/138/png-transparent-triangle-shape-shapes-s-angle-orange-color-triangle.png" alt="fly">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>circle</p>
+            <img src="https://png.pngtree.com/png-clipart/20200801/ourmid/pngtree-red-solid-color-round-png-image_2319172.jpg" alt="fly">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>star</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa9iVo9nTzOKnYtSAMk7UbrUaHFheMNuUR4A&usqp=CAU" alt="fly">
+            </button>
+        </li>
+    </ul>
+</div>
+<div class="screen game-container">
+    <h3 id="time">Time : 00:00 </h3>
+    <h3 id="score">Score : 0</h3>
+    <h5 id="message">are you annoyed yet ?</h5>
+</div>
     <footer>
-
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="./js/app.js"></script>
     </footer>
