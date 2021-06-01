@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>Document</title>
+    <title>Crazy Clicking</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <div class="screen">
+        <h1>Catch the Shape</h1>
+        <button class="btn" id="start-btn">Start</button>
+    </div>
+<div class="screen">
+    <h1>What is you're favorite shape ?</h1>
+    <ul class="insects-list">
+        <li>
+            <button class="choose-insect-btn">
+            <p>Square</p>
+            <!-- <div class="square"></div> -->
+            <img src="https://www.freeiconspng.com/thumbs/square-png/blue-square-image-3.png" alt="Square">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>triangle</p>
+            <!-- <div class="triangle"></div> -->
+            <img src="https://l.top4top.io/p_19784ibth1.png" alt="triangle">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>Pentagon</p>
+            <!-- <div class="circle"></div> -->
+            <img src="https://j.top4top.io/p_1978kulz61.png" alt="pentagon">
+            </button>
+        </li>
+        <li>
+            <button class="choose-insect-btn">
+            <p>star</p>
+            <!-- <div class="star"></div> -->
+            <img src="https://f.top4top.io/p_197854op31.png" alt="star">
+            </button>
+        </li>
+    </ul>
+</div>
+<div class="screen game-container">
+    <h3 class="time" id="time">Time : 00:00 </h3>
+    <h3 class="score" id="score">Score : 0</h3>
+    <h5 class="message" id="message">are you annoyed yet ?</h5>
+</div>
     <footer>
-
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="./js/app.js"></script>
     </footer>
