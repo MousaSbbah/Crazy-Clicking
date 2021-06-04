@@ -23,7 +23,30 @@ let socket = io.connect('http://localhost:3050'); // connect to server
 // Hide the clicked image event handler
 // render new shape Handler
 // render shapes functionality
+function rendershape(location) {
+  console.log(selected_shape);
+  const shape = document.createElement('div');
+  shape.classList.add('shape');
+  shape.style.top = `${location.y}px`;
+  shape.style.left = `${location.x}px`;
+  shape.innerHTML = `<img style="transform: rotate(${
+    Math.random() * 360
+  }deg)" src="${selected_shape.src}" alt="${selected_shape.alt}" />`;
+  shape.addEventListener('click', () => {
+    socket.emit('catched', { x: shape.style.left, y: shape.style.top });
+  });
+  game_container.appendChild(shape);
+}
 // Helper Functions
+
+function getRandomLocation() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const x = Math.random() * (width - 200) + 100;
+  const y = Math.random() * (height - 200) + 100;
+  return { x, y };
+}
+
 function startGame() {
   setInterval(increaseTime, 1000);
 }
