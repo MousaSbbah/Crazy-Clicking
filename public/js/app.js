@@ -1,86 +1,105 @@
-'use strict';
+"use strict";
 
-const screens = document.querySelectorAll( '.screen' );
-const choose_shape_btns = document.querySelectorAll( '.choose-shape-btn' );
-const start_btn = document.getElementById( 'start-btn' );
-const game_container = document.getElementById( 'game-container' );
-const timeEl = document.getElementById( 'time' );
-const scoreEl = document.getElementById( 'score' );
-const message = document.getElementById( 'message' );
+const screens = document.querySelectorAll(".screen");
+const choose_shape_btns = document.querySelectorAll(".choose-shape-btn");
+const start_btn = document.getElementById("start-btn");
+const create_btn = document.getElementById("create-btn");
+const join_btn = document.getElementById("join-btn");
+const game_container = document.getElementById("game-container");
+const timeEl = document.getElementById("time");
+const scoreEl = document.getElementById("score");
+const message = document.getElementById("message");
 
 let seconds = 0;
 let score = 0;
 let selected_shape = {};
 // eslint-disable-next-line no-undef
-let socket = io.connect( 'http://localhost:3050' ); // connect to server
+let socket = io.connect("http://localhost:3050"); // connect to server
 
-// start button emitter
-start_btn.addEventListener('click', () => {
-  socket.emit('startGame');
+create_btn.addEventListener("click", (event) => {
+  let id = generateString(7);
+  alert(id);
+});
+join_btn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const textInput = document.getElementById("roomId");
+  socket.emit("join", textInput.value);
 });
 // up screen handler
-socket.on('upScreen', () => {
-  screens[0].classList.add('up');
+socket.on("upScreen", (data) => {
+  console.log(data);
+  screens[0].classList.add("up");
+});
+
+socket.on("test", (id) => {
+  console.log(id);
+});
+let i = 0 ;
+socket.on("setId", (id) => {
+  const scores = document.querySelectorAll(".scoretext");
+  scores[i].setAttribute('id',id)
+  i++;
+
 });
 // select shape emitter
 choose_shape_btns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const img = btn.querySelector('img');
-    const src = img.getAttribute('src');
-    const alt = img.getAttribute('alt');
+  btn.addEventListener("click", () => {
+    const img = btn.querySelector("img");
+    const src = img.getAttribute("src");
+    const alt = img.getAttribute("alt");
     selected_shape = {
       src,
       alt,
     };
-    socket.emit('selectShape');
+    socket.emit("selectShape", selected_shape);
   });
 });
 // start the game handler
-socket.on('start', () => {
-  screens[1].classList.add('up');
+socket.on("start", (data) => {
+  selected_shape = data;
+  screens[1].classList.add("up");
   const location = getRandomLocation();
-  socket.emit('createFirstShape', location);
+  socket.emit("createFirstShape", location);
   startGame();
 });
 // render first image
-socket.on( 'renderFirstShape', ( location ) => {
-  rendershape( location );
-} );
+socket.on("renderFirstShape", (location) => {
+  rendershape(location);
+});
 //Catch Shape Functionality
-function catchshape( shape ) {
+function catchshape(shape) {
   increaseScore();
-  shape.classList.add( 'caught' );
-  setTimeout( () => shape.remove(), 2000 );
+  shape.classList.add("caught");
+  setTimeout(() => shape.remove(), 2000);
   const newLocation = getRandomLocation();
-  socket.emit( 'addTowShape', newLocation );
+  socket.emit("addTowShape", newLocation);
 }
 // Hide the clicked image event handler
-socket.on( 'hide', function ( location ) {
-  const allshape = document.querySelectorAll( '.shape' );
-  allshape.forEach( ( shape ) => {
-    if ( shape.style.top === location.y && shape.style.left === location.x ) {
-      catchshape( shape );
+socket.on("hide", function (location) {
+  const allshape = document.querySelectorAll(".shape");
+  allshape.forEach((shape) => {
+    if (shape.style.top === location.y && shape.style.left === location.x) {
+      catchshape(shape);
     }
-  } );
-} );
+  });
+});
 // render new shape Handler
-socket.on( 'renderNewShapes', ( location ) => {
-  setTimeout( () => {
-    rendershape( location );
-  }, 1500 );
-} );
+socket.on("renderNewShapes", (location) => {
+  setTimeout(() => {
+    rendershape(location);
+  }, 1500);
+});
 // render shapes functionality
 function rendershape(location) {
-  console.log(selected_shape);
-  const shape = document.createElement('div');
-  shape.classList.add('shape');
+  const shape = document.createElement("div");
+  shape.classList.add("shape");
   shape.style.top = `${location.y}px`;
   shape.style.left = `${location.x}px`;
   shape.innerHTML = `<img style="transform: rotate(${
     Math.random() * 360
   }deg)" src="${selected_shape.src}" alt="${selected_shape.alt}" />`;
-  shape.addEventListener('click', () => {
-    socket.emit('catched', { x: shape.style.left, y: shape.style.top });
+  shape.addEventListener("click", () => {
+    socket.emit("catched", { x: shape.style.left, y: shape.style.top });
   });
   game_container.appendChild(shape);
 }
@@ -95,11 +114,11 @@ function getRandomLocation() {
 }
 
 function startGame() {
-  setInterval( increaseTime, 1000 );
+  setInterval(increaseTime, 1000);
 }
 
 function increaseTime() {
-  let m = Math.floor( seconds / 60 );
+  let m = Math.floor(seconds / 60);
   let s = seconds % 60;
   m = m < 10 ? `0${m}` : m;
   s = s < 10 ? `0${s}` : s;
@@ -109,8 +128,20 @@ function increaseTime() {
 
 function increaseScore() {
   score++;
-  if ( score > 19 ) {
-    message.classList.add( 'visible' );
+  if (score > 19) {
+    message.classList.add("visible");
   }
   scoreEl.innerHTML = `score: ${score}`;
+}
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+function generateString(length) {
+  let result = " ";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  return result;
 }
