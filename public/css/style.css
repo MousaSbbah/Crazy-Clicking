@@ -38,7 +38,7 @@ body {
     transition: margin 0.5s ease-out;
 }
 
-.choose-insect-btn img{
+.choose-shape-btn img{
     background-color: transparent;
     width: 100px;
     height: 100px;
@@ -46,14 +46,14 @@ body {
     margin: auto;
 }
 /* 
-.choose-insect-btn .square{
+.choose-shape-btn .square{
     background-color: blue;
     width: 100px;
     height: 100px;
     object-fit: contain;
     margin: auto;
 }
-.choose-insect-btn .circle{
+.choose-shape-btn .circle{
     background-color: red;
     width: 100px;
     height: 100px;
@@ -61,7 +61,7 @@ body {
     margin: auto;
     border-radius: 50%;
 }
-.choose-insect-btn .triangle{
+.choose-shape-btn .triangle{
     width: 0;
 	height: 0;
 	border-left: 50px solid transparent;
@@ -69,7 +69,7 @@ body {
 	border-bottom: 100px solid yellow;
     margin: auto;
 }
-.choose-insect-btn .star{
+.choose-shape-btn .star{
     margin: 50px 0;
     position: relative;
     display: block;
@@ -82,7 +82,7 @@ body {
     transform: rotate(35deg);
    margin: auto;
 }
-.choose-insect-btn .star:before {
+.choose-shape-btn .star:before {
     border-bottom: 60px solid red;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
@@ -95,7 +95,7 @@ body {
     content: '';
     transform: rotate(-35deg);
   }
-  .choose-insect-btn .star:after {
+  .choose-shape-btn .star:after {
     position: absolute;
     display: block;
     color: red;
@@ -122,7 +122,7 @@ h1 {
     line-height: 1.4;
 }
 
-.insects-list {
+.shapes-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -130,10 +130,10 @@ h1 {
     padding: 0;
 }
 
-.insects-list li {
+.shapes-list li {
     margin: 10px;
 }
-.choose-insect-btn {
+.choose-shape-btn {
     background: transparent;
     border: 2px solid #fff;
     color :#fff;
@@ -143,11 +143,11 @@ h1 {
     height: 150px;
     align-items: center;
 }
-.choose-insect-btn:hover {
+.choose-shape-btn:hover {
     background-color: #fff;
     color: #516dff;
 }
-.choose-insect-btn:active {
+.choose-shape-btn:active {
     background-color: rgba(255 , 255 ,255, 0.7);
 }
 
@@ -188,7 +188,7 @@ top: 20px;
     transform: translate(-50%,150%);
 }
 
-.insect{
+.shape{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,11 +199,11 @@ top: 20px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
 }
-.insect.caught{
+.shape.caught{
     transform: translate(-50%, -50%) scale(0);
 }
 
-.insect img{
+.shape img{
     width: 100px;
     height: 100px;
 }
