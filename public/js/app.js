@@ -15,9 +15,33 @@ let selected_shape = {};
 let socket = io.connect( 'http://localhost:3050' ); // connect to server
 
 // start button emitter
+start_btn.addEventListener('click', () => {
+  socket.emit('startGame');
+});
 // up screen handler
+socket.on('upScreen', () => {
+  screens[0].classList.add('up');
+});
 // select shape emitter
+choose_shape_btns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const img = btn.querySelector('img');
+    const src = img.getAttribute('src');
+    const alt = img.getAttribute('alt');
+    selected_shape = {
+      src,
+      alt,
+    };
+    socket.emit('selectShape');
+  });
+});
 // start the game handler
+socket.on('start', () => {
+  screens[1].classList.add('up');
+  const location = getRandomLocation();
+  socket.emit('createFirstShape', location);
+  startGame();
+});
 // render first image
 socket.on( 'renderFirstShape', ( location ) => {
   rendershape( location );
