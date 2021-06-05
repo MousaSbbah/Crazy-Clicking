@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Crazy Clicking</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="screen">
+        <header>
+            <h1>Crazy Clicking</h1>
+        </header>
+        <form action="" class="form" id="form">
+            <button class="btn" id="create-btn">Generate Room Name</button>
+            <label for="roomId">insert Room Id Code Here :</label>
+            <input type="text" name="roomId" id="roomId">
+            <input type="submit" id="join-btn" class="joining" value="Join">
+        </form>
+    </div>
+    <!-- <div class="screen">
+        <h1>Catch the Shape</h1>
+        <button class="btn" id="start-btn">Start</button>
+    </div> -->
+<div class="screen">
+    <h1>What is your favorite face ?</h1>
+    <ul class="shapes-list">
+        <li>
+            <button class="choose-shape-btn">
+            <p>Jirou </p>
+            <!-- <div class="square"></div> -->
+            
+            <img src="https://j.top4top.io/p_1982vkk291.png" alt="Square">
+            </button>
+        </li>
+        <li>
+            <button class="choose-shape-btn">
+            <p>Asui</p>
+            <!-- <div class="triangle"></div> -->
+            <img src="https://j.top4top.io/p_1982fzhma1.png" alt="triangle">
+            </button>
+        </li>
+        <li>
+            <button class="choose-shape-btn">
+            <p>Midoriya</p>
+            <!-- <div class="circle"></div> -->
+            <img src="https://j.top4top.io/p_19826mghq1.png" alt="pentagon">
+            </button>
+        </li>
+        <li>
+            <button class="choose-shape-btn">
+            <p>Iida</p>
+            <!-- <div class="star"></div> -->
+            <img src="https://k.top4top.io/p_1982hgiw41.png" alt="star">
+            </button>
+        </li>
+    </ul>
+</div>
+<div class="screen game-container" id='game-container'>
+    <h3 class="time" id="time">Time : 00:00 </h3>
+    <h3  id="player"></h3>
+    <div class="score">
+        <h3 class="scoretext" >Player 1 : 0</h3>
+        <h3 class="scoretext" >Player 2 : 0</h3>
+        <h3 class="scoretext" >Player 3 : 0</h3>
+
+    </div>
+    <h5 class="message" id="message">are you annoyed yet ?</h5>
+    <div id="shapesContainer"></div>
+</div>
+    <footer>
+        
+    </footer>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

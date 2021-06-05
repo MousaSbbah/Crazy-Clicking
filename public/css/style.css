@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    text-align: center;
+    background-color: #516dff;
+    color: #fff;
+}
+
+.btn {
+    border: 0;
+    background-color: #fff;
+    color: #516dff;
+    padding: 15px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: -40px;
+    border-radius: 14px;
+}
+.btn:focus {
+    outline: 0;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    transition: margin 0.5s ease-out;
+    /* background-image: url(https://l.top4top.io/p_198240zw01.png); */
+    background-image: url(https://a.top4top.io/p_1982b9ndc1.png);
+
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.choose-shape-btn img{
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: auto;
+}
+/* .choose-shape-btn img:hover{
+    -webkit-box-shadow: 2px 0px 21px -1px #fff; 
+    box-shadow: 2px 0px 21px -1px #fff;
+
+} */
+/* 
+.choose-shape-btn .square{
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: auto;
+}
+.choose-shape-btn .circle{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: auto;
+    border-radius: 50%;
+}
+.choose-shape-btn .triangle{
+    width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 100px solid yellow;
+    margin: auto;
+}
+.choose-shape-btn .star{
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: red;
+    width: 0px;
+    height: 0px;
+    border-right: 70px solid transparent;
+    border-bottom: 50px solid red;
+    border-left: 70px solid transparent;
+    transform: rotate(35deg);
+   margin: auto;
+}
+.choose-shape-btn .star:before {
+    border-bottom: 60px solid red;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -35px;
+    left: -50px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+  }
+  .choose-shape-btn .star:after {
+    position: absolute;
+    display: block;
+    color: red;
+    top: 3px;
+    left: -105px;
+    width: 0px;
+    height: 0px;
+    border-right: 70px solid transparent;
+    border-bottom: 50px solid red;
+    border-left: 70px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+  } */
+
+.screen.up {
+    margin-top: -100vh;
+}
+
+a {
+    color: #fff;
+}
+
+h1 {
+    line-height: 1.4;
+}
+
+.shapes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.shapes-list li {
+    margin: 10px;
+}
+.choose-shape-btn {
+    background: transparent;
+    border: 2px solid #fff;
+    color :#fff;
+    cursor: pointer;
+    font-family: inherit;
+    width: 150px;
+    height: 150px;
+    align-items: center;
+}
+.choose-shape-btn:hover {
+    background-color: #fff;
+    color: #516dff;
+}
+.choose-shape-btn:active {
+    background-color: rgba(255 , 255 ,255, 0.7);
+}
+
+.game-container{
+    position: relative;
+}
+
+.time, .score {
+position: absolute;
+top: 20px;
+}
+
+.time{
+    left: 20px;
+}
+
+.score{
+    right: 20px;   
+}
+
+.message {
+    line-height: 1.7;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    padding: 20px;
+    z-index: 100;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-150%);
+    transition: transform 0.4s ease-in;
+}
+
+.message.visible{
+    opacity: 1;
+    transform: translate(-50%,150%);
+}
+
+.shape{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.shape.caught{
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.shape img{
+    width: 80px;
+    height: 80px;
+}
+
+
+#shapesContainer{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+}
+
+.form {
+    background-image: url(https://i.top4top.io/p_198229yqg1.png);
+    height: 520px;
+    width: 630px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border-radius: 15%; */
+    padding: 50px;
+    text-align: center;
+    padding-top: 150px;
+    align-content: center;
+}
+.form input {
+    display:flex;
+    align-self: center;
+    margin: auto;
+    text-align: center;
+    margin-top: 40px;
+}
+.form input[type="text"]{
+    caret-color: #fff;
+    color: #fff;
+    font-size: 26px;
+    padding :20px;
+    font-family: 'Press Start 2P', cursive;
+    width: 400px;
+    height: 50px;
+    background-color: #4d82c363;
+    outline: none;
+    border: 2px solid #214b7365;
+    border-radius: 10px;
+    -moz-box-shadow:    inset 0 0 10px #214b73;
+   -webkit-box-shadow: inset 0 0 10px #214b73;
+   box-shadow:         inset 0 0 10px #214b73;
+}
+
+
+
+.joining {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    padding: 15px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 50px;
+    text-align: left;
+    padding-bottom: 40px;
+    font-size: 22px;
+    padding-right: 60px;
+    background-image: url(https://l.top4top.io/p_19825s37k1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+.joining:hover {
+    filter: saturate(2);
+    filter: brightness(1.2);
+    transform: translate(10% 10%);
+    transform: translate(1%, -1%) scale(1.1)    
+}
+.joining:active {
+    filter: saturate(2);
+}
