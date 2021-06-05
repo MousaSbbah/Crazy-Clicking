@@ -8,6 +8,7 @@ const join_btn = document.getElementById('join-btn');
 const game_container = document.getElementById('game-container');
 const timeEl = document.getElementById('time');
 const scores = document.querySelectorAll('.scoretext');
+const form = document.getElementById('form')
 
 const message = document.getElementById('message');
 const player = document.getElementById('player');
@@ -26,6 +27,10 @@ join_btn.addEventListener('click', (event) => {
   event.preventDefault();
   const textInput = document.getElementById('roomId');
   socket.emit('join', textInput.value);
+  const waitingForPlayers = document.createElement ('p');
+  waitingForPlayers.textContent = `you are in Room : ${textInput.value}`;
+  form.appendChild (waitingForPlayers);
+
 });
 // up screen handler
 socket.on('upScreen', (data) => {

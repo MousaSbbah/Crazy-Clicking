@@ -20,6 +20,8 @@
   "homepage": "https://github.com/MousaSbbah/Crazy-Clicking#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http": "*",
+    "socket.io": "^4.1.2"
   }
 }
