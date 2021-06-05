@@ -21,7 +21,7 @@ let allScore = [0, 0, 0];
 let selected_shape = {};
 let data = { allScore: allScore, allShapes: [] };
 // eslint-disable-next-line no-undef
-let socket = io.connect( 'http://localhost:3050' ); // connect to server
+let socket = io.connect( 'https://crazy-clicking.herokuapp.com' ); // connect to server
 
 create_btn.addEventListener( 'click', ( event ) => {
   let id = generateString( 7 );
