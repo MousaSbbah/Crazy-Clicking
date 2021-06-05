@@ -18,7 +18,7 @@ let allScore = [0, 0, 0];
 let selected_shape = {};
 let data = { allScore: allScore, allShapes: [] };
 // eslint-disable-next-line no-undef
-let socket = io.connect('http://localhost:3050/');
+let socket = io.connect('https://cityexplorer2.herokuapp.com');
 
 create_btn.addEventListener('click', (event) => {
   let id = generateString(7);
