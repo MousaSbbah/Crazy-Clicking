@@ -10,6 +10,7 @@ const io = new Server(server);
 let allData = [];
 let rooms=[];
 let GameData = { allScore: [0,0,0], allShapes: [] };
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public"));
 app.get("/start", function (req, res) {
   res.sendFile(__dirname + "/index.html");
