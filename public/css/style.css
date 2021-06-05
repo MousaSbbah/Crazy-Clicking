@@ -20,6 +20,11 @@ body {
     padding: 15px 20px;
     font-family: inherit;
     cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: -40px;
+    border-radius: 14px;
 }
 .btn:focus {
     outline: 0;
@@ -36,6 +41,12 @@ body {
     height: 100vh;
     width: 100vw;
     transition: margin 0.5s ease-out;
+    /* background-image: url(https://l.top4top.io/p_198240zw01.png); */
+    background-image: url(https://a.top4top.io/p_1982b9ndc1.png);
+
+    
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .choose-shape-btn img{
@@ -45,6 +56,11 @@ body {
     object-fit: contain;
     margin: auto;
 }
+/* .choose-shape-btn img:hover{
+    -webkit-box-shadow: 2px 0px 21px -1px #fff; 
+    box-shadow: 2px 0px 21px -1px #fff;
+
+} */
 /* 
 .choose-shape-btn .square{
     background-color: blue;
@@ -165,7 +181,7 @@ top: 20px;
 }
 
 .score{
-    right: 20px;
+    right: 20px;   
 }
 
 .message {
@@ -204,9 +220,78 @@ top: 20px;
 }
 
 .shape img{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+}
+
+
+#shapesContainer{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+}
+
+.form {
+    background-image: url(https://i.top4top.io/p_198229yqg1.png);
+    height: 520px;
+    width: 630px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border-radius: 15%; */
+    padding: 50px;
+    text-align: center;
+    padding-top: 150px;
+    align-content: center;
+}
+.form input {
+    display:flex;
+    align-self: center;
+    margin: auto;
+    text-align: center;
+    margin-top: 40px;
+}
+.form input[type="text"]{
+    caret-color: #fff;
+    color: #fff;
+    font-size: 26px;
+    padding :20px;
+    font-family: 'Press Start 2P', cursive;
+    width: 400px;
+    height: 50px;
+    background-color: #4d82c363;
+    outline: none;
+    border: 2px solid #214b7365;
+    border-radius: 10px;
+    -moz-box-shadow:    inset 0 0 10px #214b73;
+   -webkit-box-shadow: inset 0 0 10px #214b73;
+   box-shadow:         inset 0 0 10px #214b73;
 }
 
 
 
+.joining {
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    padding: 15px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 50px;
+    text-align: left;
+    padding-bottom: 40px;
+    font-size: 22px;
+    padding-right: 60px;
+    background-image: url(https://l.top4top.io/p_19825s37k1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+.joining:hover {
+    filter: saturate(2);
+    filter: brightness(1.2);
+    transform: translate(10% 10%);
+    transform: translate(1%, -1%) scale(1.1)    
+}
+.joining:active {
+    filter: saturate(2);
+}

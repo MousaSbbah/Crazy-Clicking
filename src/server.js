@@ -1,47 +1,83 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-require('dotenv').config();
+const express = require("express");
+require("dotenv").config();
 const app = express();
-const http = require('http');
+const http = require("http");
 const server = http.createServer(app);
-const { Server } = require('socket.io');
+const { Server } = require("socket.io");
 const io = new Server(server);
-
-app.use(express.static('./public'));
-app.get('/start', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+let allData = [];
+let rooms=[];
+let GameData = { allScore: [0,0,0], allShapes: [] };
+app.use(express.static("./public"));
+app.get("/start", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
 });
+io.on("connection", function (socket) {
 
-io.on('connection', function (socket) {
-  console.log('A user has connected');
-  socket.on('disconnect', () => {
-    console.log('A user has disconnected.');
+  console.log("A user has connected");
+  socket.on("disconnect", () => {
+
+    console.log("A user has disconnected.");
   });
-  socket.on('startGame', function () {
-    io.emit('upScreen');
+  let idd;
+  socket.on("join", async function (id) {
+    let room = io.sockets.adapter.rooms.get(id);
+    let checkSize =  room ? room.size : 0;
+    idd = id ;
+    if (checkSize < 3) {
+      let users=[];
+      socket.join(id);
+      if(! rooms.includes(idd)){
+        rooms.push(idd);
+        allData.push(GameData);
+      }
+      
+      const clientsInRoom =   await io.sockets.adapter.sockets(new Set([id]));
+      clientsInRoom.forEach(val=>{
+        users.push(val);
+      })
+
+      
+      io.to(id).emit("setId",users);
+      if (checkSize === 2) {
+        
+        io.to(idd).emit("upScreen");
+        io.to(socket.id).emit("renderData",allData[rooms.indexOf(idd)]);
+      }
+    }
+
+    
   });
-  socket.on('selectShape', (data) => {
-    io.emit('start',data);
+
+  socket.on("selectShape", (data) => {
+    io.to(idd).emit("start", {data:data,id:idd});
+  
   });
-  socket.on('catched', (data) => {
-    io.emit('hide',data);
+  socket.on("updateData", (data) => {
+    allData[rooms.indexOf(data.id)]=data;
   });
-  socket.on('createFirstShape', (data) => {
-    io.emit('renderFirstShape',data);
+
+  socket.on("catched", (data) => {
+    io.to(idd).emit("hide", {location:data,id :socket.id});
   });
-  socket.on('addTowShape', (data) => {
-    io.emit('renderNewShapes',data);
+  socket.on("createFirstShape", (data) => {
+    io.to(idd).emit("renderFirstShape", data);
+  });
+  socket.on("addTowShape", (data) => {
+    io.to(idd).emit("renderNewShapes", data);
   });
 });
 
 /////////////////////////
-function start(port) {
 
+function start(port) {
   server.listen(port, () => {
     console.log(`::::: Up  on PORT ${port} :::::`);
   });
 }
-module.exports={
-  server,start
-}
+module.exports = {
+  server,
+  start,
+};
