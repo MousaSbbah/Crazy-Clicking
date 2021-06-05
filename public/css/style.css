@@ -224,6 +224,13 @@ top: 20px;
     height: 80px;
 }
 
+
+#shapesContainer{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+}
+
 .form {
     background-image: url(https://i.top4top.io/p_198229yqg1.png);
     height: 520px;
@@ -259,6 +266,7 @@ top: 20px;
    -webkit-box-shadow: inset 0 0 10px #214b73;
    box-shadow:         inset 0 0 10px #214b73;
 }
+
 
 
 .joining {

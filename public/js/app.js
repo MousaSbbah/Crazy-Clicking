@@ -8,7 +8,11 @@ const join_btn = document.getElementById('join-btn');
 const game_container = document.getElementById('game-container');
 const timeEl = document.getElementById('time');
 const scores = document.querySelectorAll('.scoretext');
+
+const shapesContainer = document.getElementById('shapesContainer')
+
 const form = document.getElementById('form')
+
 
 const message = document.getElementById( 'message' );
 const player = document.getElementById( 'player' );
@@ -93,11 +97,13 @@ socket.on( 'renderData', ( payload ) => {
       shape.style.top = `${y}px`;
       shape.style.left = `${x}px`;
       shape.innerHTML = img.inner;
-      shape.addEventListener( 'click', () => {
-        socket.emit( 'catched', { x: shape.style.left, y: shape.style.top } );
-      } );
-      game_container.appendChild( shape );
-    } );
+
+      shape.addEventListener('click', () => {
+        socket.emit('catched', { x: shape.style.left, y: shape.style.top });
+      });
+      shapesContainer.appendChild(shape);
+    });
+
   }
   allScore = payload.allScore;
 } );
@@ -136,18 +142,22 @@ function rendershape( location ) {
   shape.innerHTML = `<img style="transform: rotate(${
     Math.random() * 360
   }deg)" src="${selected_shape.src}" alt="${selected_shape.alt}" />`;
-  shape.addEventListener( 'click', () => {
-    socket.emit( 'catched', { x: shape.style.left, y: shape.style.top } );
-  } );
-  game_container.appendChild( shape );
+
+  shape.addEventListener('click', () => {
+    socket.emit('catched', { x: shape.style.left, y: shape.style.top });
+  });
+  shapesContainer.appendChild(shape);
+
 }
 // Helper Functions
 
 function getRandomLocation() {
   const width = window.innerWidth;
   const height = window.innerHeight;
+
   const x = Math.random() * ( width - 200 ) + 100;
   const y = Math.random() * ( height - 200 ) + 100;
+
   return { x, y };
 }
 
