@@ -21,7 +21,7 @@ let allScore = [0, 0, 0];
 let selected_shape = {};
 let data = { allScore: allScore, allShapes: [] };
 // eslint-disable-next-line no-undef
-let socket = io.connect( 'http://localhost:3050' ); // connect to server
+let socket = io.connect( 'http://localhost:3050' );
 
 create_btn.addEventListener( 'click', ( event ) => {
   let id = generateString( 7 );
@@ -37,23 +37,14 @@ join_btn.addEventListener( 'click', ( event ) => {
   form.appendChild (waitingForPlayers);
 
 });
-
-// up screen handler
-socket.on( 'upScreen', ( data ) => {
-  console.log( data );
+socket.on( 'upScreen', () => {
   screens[0].classList.add( 'up' );
 } );
-
-// socket.on('test', (id) => {
-//   player.innerHTML =
-//     player.innerHTML.length < 5 ? player.innerHTML : `Player ${id}`;
-// });
 socket.on( 'setId', ( id ) => {
   for ( let i = 0; i < scores.length; i++ ) {
     scores[i].id = id[i];
   }
 } );
-// select shape emitter
 choose_shape_btns.forEach( ( btn ) => {
   btn.addEventListener( 'click', () => {
     const img = btn.querySelector( 'img' );
