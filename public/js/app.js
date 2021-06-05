@@ -8,6 +8,7 @@ const join_btn = document.getElementById('join-btn');
 const game_container = document.getElementById('game-container');
 const timeEl = document.getElementById('time');
 const scores = document.querySelectorAll('.scoretext');
+const shapesContainer = document.getElementById('shapesContainer')
 
 const message = document.getElementById('message');
 const player = document.getElementById('player');
@@ -89,7 +90,7 @@ socket.on('renderData', (payload) => {
       shape.addEventListener('click', () => {
         socket.emit('catched', { x: shape.style.left, y: shape.style.top });
       });
-      game_container.appendChild(shape);
+      shapesContainer.appendChild(shape);
     });
   }
   allScore = payload.allScore;
@@ -132,13 +133,16 @@ function rendershape(location) {
   shape.addEventListener('click', () => {
     socket.emit('catched', { x: shape.style.left, y: shape.style.top });
   });
-  game_container.appendChild(shape);
+  shapesContainer.appendChild(shape);
 }
 // Helper Functions
 
 function getRandomLocation() {
   const width = window.innerWidth;
   const height = window.innerHeight;
+  // const width = window.screen.availWidth ;
+  // const height = window.screen.availHeight;
+  console.log('width: ', width, 'height: ', height)
   const x = Math.random() * (width - 200) + 100;
   const y = Math.random() * (height - 200) + 100;
   return { x, y };
